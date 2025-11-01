@@ -12,6 +12,9 @@ import axios from "axios";
 import { addToCart } from "../../reducers/cartReducer";
 import "./Products.css";
 
+// 🚀 FIXED: API_URL যোগ করা হয়েছে
+const API_URL = process.env.REACT_APP_API_URL; 
+
 // --- Helper Functions & Constants ---
 
 const TAB_KEYS = ["description", "specifications", "reviews"];
@@ -49,7 +52,9 @@ function useProductData(id) {
         try {
             setLoading(true);
             setError(null);
-            const res = await axios.get(`/api/products/${id}`);
+            
+            // 🚀 পরিবর্তন এখানে: API_URL ব্যবহার করে সম্পূর্ণ URL তৈরি করা হলো
+            const res = await axios.get(`${API_URL}/api/products/${id}`); 
             
             // বিভিন্ন API রেসপন্স ফরম্যাট হ্যান্ডেল করা
             const productData = res.data?.product || res.data;
