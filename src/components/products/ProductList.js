@@ -13,8 +13,12 @@ function useQuery() {
 
 const ProductList = () => {
     const dispatch = useDispatch();
+    // 1. Redux State থেকে ডেটা আনা
     const { products, loading, error } = useSelector((state) => state.products);
     const { isAuthenticated, user } = useSelector((state) => state.auth);
+
+    // 🚀 FIXED: Safe check যোগ করা হলো। products array না হলে একটি খালি array ব্যবহার করা হবে।
+    const safeProducts = Array.isArray(products) ? products : []; 
 
     const query = useQuery();
     const categoryFromUrl = query.get('category');
@@ -41,13 +45,15 @@ const ProductList = () => {
 
     // ✅ Unique categories
     const categories = useMemo(() => {
-         const unique = [...new Set(products.map((p) => p.category))];
+         // 🚀 FIXED: products এর পরিবর্তে safeProducts ব্যবহার করা হলো
+         const unique = [...new Set(safeProducts.map((p) => p.category))];
          return ['all', ...unique.sort()];
-    }, [products]);
+    }, [safeProducts]);
 
     // ✅ Filter + Sort Logic
     const filteredAndSorted = useMemo(() => {
-        const filtered = products.filter((p) => {
+        // 🚀 FIXED: products এর পরিবর্তে safeProducts ব্যবহার করা হলো
+        const filtered = safeProducts.filter((p) => {
             const matchSearch =
                 p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 p.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -76,7 +82,7 @@ const ProductList = () => {
         });
 
         return sorted;
-    }, [products, searchTerm, sortBy, sortOrder, selectedCategory]);
+    }, [safeProducts, searchTerm, sortBy, sortOrder, selectedCategory]); // Dependency তেও safeProducts
 
     const handleClearFilters = () => {
         setSearchTerm('');
@@ -130,7 +136,7 @@ const ProductList = () => {
                         {!isMobile && ( 
                             <div className="header-stats">
                                 <div className="stat-item">
-                                    <span className="stat-number">{products.length}</span>
+                                    <span className="stat-number">{safeProducts.length}</span> {/* safeProducts ব্যবহার */}
                                     <span className="stat-label">Total</span>
                                 </div>
                                 <div className="stat-item">
@@ -141,7 +147,7 @@ const ProductList = () => {
                         )}
                     </div>
 
-                    {/* === PORIBORTON EKHANE: Mobile Stats Bar-e Filter Button Add === */}
+                    {/* === Mobile Stats Bar-e Filter Button Add === */}
                     <div className="mobile-stats">
                         <span>{filteredAndSorted.length} Products Found</span>
                         <button className="filter-toggle-btn" onClick={toggleFilterMenu}>
