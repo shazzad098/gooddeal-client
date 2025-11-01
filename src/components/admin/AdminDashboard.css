@@ -1,0 +1,694 @@
+/* ============================================================================
+    ADMIN DASHBOARD - New Design (Based on Image)
+   ============================================================================ */
+
+/* _0_Root_and_Theme_ */
+:root {
+    /* Primary Colors (Pine Green) */
+    --primary-color: #059669; /* emerald-600 */
+    --primary-dark: #047857;  /* emerald-700 */
+    --primary-light: #ECFDF5; /* emerald-50 */
+    --primary-border: #A7F3D0; /* emerald-200 */
+    
+    /* Danger/Error Colors (Red) */
+    --danger-color: #DC2626;  /* red-600 */
+    --danger-dark: #B91C1C;   /* red-700 */
+    --danger-light: #FEF2F2;  /* red-50 */
+    --danger-border: #FECACA; /* red-200 */
+
+    /* Text Colors (Modern Grays) */
+    --text-primary: #111827;   /* gray-900 */
+    --text-secondary: #4B5563; /* gray-600 */
+    --text-muted: #9CA3AF;     /* gray-400 */
+
+    /* Backgrounds */
+    --bg-page: #f9fafb;    /* gray-50 */
+    --bg-card: #ffffff;
+    --bg-surface: #f3f4f6; /* gray-100 */
+    /* নতুন: ছবির মতো মিন্ট গ্রিন ব্যাকগ্রাউন্ড */
+    --bg-content-area: #f0f7f4; 
+
+    /* Borders & Shadows (Subtle) */
+    --border-light: #e5e7eb; /* gray-200 */
+    --border-medium: #d1d5db; /* gray-300 */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    
+    /* Layout Sizing */
+    --sidebar-width: 260px; /* সাইডবার সামান্য ছোট করা হলো */
+    --header-height: 70px;
+    --hamburger-width: 30px;
+    --hamburger-height: 21px;
+
+    /* Sizing & Transition */
+    --radius-md: 0.5rem;   /* 8px */
+    --radius-lg: 0.75rem;  /* 12px */
+    --radius-xl: 1rem;     /* 16px */
+    --transition: all 200ms ease-in-out;
+    
+    /* Accessibility */
+    --focus-ring-color: #D1FAE5; /* emerald-100 */
+    --focus-border-color: var(--primary-color);
+    --focus-ring-width: 3px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-content-area); /* ডিফল্ট ব্যাকগ্রাউন্ড পরিবর্তন */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ============================================================================
+   _1_Admin_Dashboard_Layout_ (নতুন লেআউট)
+   ============================================================================ */
+.admin-dashboard {
+    min-height: 100vh;
+    display: flex;
+    width: 100%;
+    background: var(--bg-content-area);
+}
+
+/* ============================================================================
+   _2_Admin_Sidebar_Layout_ (নতুন লেআউট)
+   ============================================================================ */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-light);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    height: 100vh;
+    position: fixed; /* ফিক্সড পজিশন */
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    z-index: 1001; /* মোবাইল মেনুর উপরে */
+}
+
+.admin-sidebar-header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.admin-sidebar-header h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Admin Navigation (ডিজাইন আপডেট) */
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px 15px;
+}
+
+.admin-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-nav a:hover {
+    background: var(--primary-light);
+    color: var(--primary-color);
+}
+
+/* ছবির মতো অ্যাক্টিভ স্টাইল */
+.admin-nav a.active {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.2);
+}
+
+/* ============================================================================
+   _3_Admin_Content_Layout_ (নতুন লেআউট)
+   ============================================================================ */
+.admin-content {
+    flex: 1;
+    background: var(--bg-content-area);
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    /* সাইডবারের জন্য মার্জিন */
+    margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    position: relative;
+}
+
+/* নতুন: কন্টেন্ট হেডার */
+.admin-content-header {
+    height: var(--header-height);
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: sticky; /* কন্টেন্টের মধ্যে স্টিকি */
+    top: 0;
+    z-index: 1000;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.content-page-title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* নতুন: কন্টেন্ট মেইন এরিয়া */
+.admin-content-main {
+    padding: 30px;
+}
+
+/* Hamburger Menu (স্থানান্তর) */
+.hamburger-menu {
+    display: none; /* ডেস্কটপে হাইড */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: var(--hamburger-width);
+    height: var(--hamburger-height);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+}
+
+/* (বাকি হ্যামবার্গার স্টাইল .hamburger-line, .top, .middle, .bottom অপরিবর্তিত) */
+.hamburger-line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+.hamburger-menu .top { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger-menu .middle { opacity: 0; }
+.hamburger-menu .bottom { transform: rotate(-45deg) translate(5px, -5px); }
+
+
+/* কন্টেন্ট হেডারের ভেতরের অ্যাকশন */
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-welcome {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* ============================================================================
+   _4_Buttons_
+   ============================================================================ */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    font-family: inherit;
+}
+/* (বাকি .btn-outline, .btn-danger, .btn-primary অপরিবর্তিত) */
+.btn-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+    border: 1px solid var(--danger-color);
+}
+.btn-danger:hover {
+    background: var(--danger-dark);
+    border-color: var(--danger-dark);
+}
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: 1px solid var(--primary-color);
+}
+.btn-primary:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* ============================================================================
+   _5_Dashboard_Home_Content_ (ডিজাইন আপডেট)
+   ============================================================================ */
+/* ( .dashboard-header রিমুভ করা হয়েছে, কারণ এটি এখন .admin-content-main এর বাইরে ) */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* স্ট্যাটাস কার্ড (ছবির মতো ডিজাইন) */
+.stat-card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: var(--radius-xl); /* ছবির মতো গোলাকার */
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid var(--border-light);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    /* border-left রিমুভ করা হলো */
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+    width: 50px; /* ছোট করা হলো */
+    height: 50px;
+    border-radius: 50%; /* ছবির মতো গোল */
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-info h3 {
+    margin: 0 0 8px 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-number {
+    margin: 0;
+    font-size: 1.75rem; /* সামান্য ছোট */
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+/* ট্রেন্ড (ছবির মতো) */
+.stat-trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 99px;
+}
+.stat-trend.positive {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+}
+.stat-trend.negative {
+    background: var(--danger-light);
+    color: var(--danger-dark);
+}
+
+
+/* Quick Actions (অপরিবর্তিত) */
+.quick-actions {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    margin-bottom: 30px;
+}
+.quick-actions h3 {
+    margin: 0 0 25px 0;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.action-btn {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    padding: 25px 20px;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.action-btn:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-border);
+    color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(5, 150, 105, 0.1);
+}
+.action-icon {
+    font-size: 2rem;
+    transition: transform 0.3s ease;
+}
+.action-btn:hover .action-icon {
+    transform: scale(1.1);
+}
+
+/* নতুন: চার্ট প্লেসহোল্ডার (ছবির মতো) */
+.charts-placeholder-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+.chart-placeholder {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    min-height: 300px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border: 1px solid var(--border-light);
+}
+.chart-placeholder .chart-icon {
+    font-size: 3rem;
+}
+
+/* ============================================================================
+   _6_Misc_States_ (Access Denied, Loading)
+   ============================================================================ */
+/* ( .admin-access-denied, .access-denied-content, .loading-state, .spinner অপরিবর্তিত ) */
+.admin-access-denied {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg-page);
+    padding: 20px;
+    width: 100%;
+}
+.access-denied-content {
+    text-align: center;
+    padding: 50px 40px;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid var(--border-light);
+}
+.access-denied-content h2 {
+    color: var(--danger-color);
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+.access-denied-content p {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+.loading-state {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+.spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 4px solid var(--primary-light);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { 
+    to { transform: rotate(360deg); } 
+}
+
+
+/* ============================================================================
+   _7_Responsive_Design_ (নতুন লেআউটের জন্য আপডেট)
+   ============================================================================ */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* সাইডবারের নিচে */
+    animation: fadeIn 0.3s ease;
+}
+
+/* ট্যাবলেট এবং ছোট ল্যাপটপ */
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        transform: translateX(-100%); /* ডিফল্টভাবে হাইড */
+        top: 0;
+        height: 100vh;
+    }
+    .admin-sidebar.open {
+        transform: translateX(0); /* স্লাইড ইন */
+    }
+    
+    .admin-content {
+        margin-left: 0; /* কন্টেন্ট পুরো জায়গা নেবে */
+        width: 100%;
+    }
+
+    .admin-content-header .hamburger-menu {
+        display: flex; /* হ্যামবার্গার বাটন দেখানো */
+    }
+
+    .admin-content-header .admin-welcome {
+        display: none; /* ওয়েলকাম মেসেজ হাইড */
+    }
+
+    .admin-sidebar-header {
+        display: none; /* মোবাইলে সাইডবার হেডার হাইড */
+    }
+    
+    .sidebar-overlay {
+        display: block; /* ডার্ক ওভারলে দেখানো */
+    }
+
+    .charts-placeholder-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* মোবাইল (বড়) */
+@media (max-width: 768px) {
+    .admin-content-header {
+        padding: 0 15px;
+    }
+    .content-page-title {
+        font-size: 1.2rem;
+    }
+    .admin-content-main {
+        padding: 20px 15px;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .action-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* মোবাইল (ছোট) */
+@media (max-width: 480px) {
+    .admin-sidebar {
+        width: 90%;
+    }
+    .btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    .admin-header-actions .btn {
+        display: none; /* ছোট মোবাইলে শুধু লগআউট বাটন */
+    }
+    .admin-header-actions .btn-danger {
+        display: inline-flex;
+    }
+    .content-page-title {
+        font-size: 1.1rem;
+    }
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    .admin-content-main {
+        padding: 15px;
+    }
+}
+
+/* ============================================================================
+   _8_Animations_&_Scrollbar_
+   ============================================================================ */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.admin-content-main > * {
+    animation: fadeIn 0.5s ease;
+}
+/* (বাকি Scrollbar, Pulse, Focus স্টাইল অপরিবর্তিত) */
+.admin-sidebar::-webkit-scrollbar,
+.admin-content::-webkit-scrollbar {
+    width: 6px;
+}
+.admin-sidebar::-webkit-scrollbar-track,
+.admin-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+.admin-sidebar::-webkit-scrollbar-thumb,
+.admin-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+.admin-sidebar::-webkit-scrollbar-thumb:hover,
+.admin-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(5, 150, 105, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+}
+.has-notification { position: relative; }
+.has-notification::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--danger-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+:where(a, button, [role="tab"], .thumbnail, .quantity-input, .quantity-btn, .btn, .add-to-cart-btn, .action-btn):focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 var(--focus-ring-width) var(--focus-ring-color),
+        0 0 0 calc(var(--focus-ring-width) + 1px) var(--focus-border-color);
+    border-color: var(--focus-border-color);
+}
+
+/* ============================================================================
+   _11_ Mobile Sidebar Actions (আপনার অনুরোধ)
+   ============================================================================ */
+.admin-sidebar-mobile-actions {
+    display: none; 
+    flex-direction: column;
+    gap: 1rem;
+    padding: 20px 15px;
+    /* margin-top: auto; <-- এই লাইনটি মুছে ফেলুন */
+    border-top: 1px solid var(--border-light);
+    position: sticky; /* সাইডবারের নিচে আটকে থাকবে */
+    bottom: 0; /* নিচের দিকে আটকে থাকবে */
+    background: var(--bg-card); /* সাইডবারের ব্যাকগ্রাউন্ডের সাথে মিল রাখতে */
+    z-index: 10; /* সাইডবারের উপরে থাকবে */
+}
+
+.admin-sidebar-mobile-actions .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+/* Tablet (1024px) - মোবাইল ভিউতে বাটনগুলো দেখায় */
+@media (max-width: 1024px) {
+    .admin-sidebar-mobile-actions {
+        display: flex; /* মোবাইল ভিউতে দেখায় */
+    }
+    
+    .admin-sidebar {
+        /* সাইডবারকে flex-container বানানো হয়েছে যাতে বাটন নিচে থাকে */
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* সম্পূর্ণ উচ্চতা দিন */
+        overflow-y: auto; /* স্ক্রল যেন কাজ করে */
+    }
+    
+    .admin-nav {
+         /* ন্যাভিগেশন লিঙ্কগুলো বাকি জায়গা দখল করে */
+        flex-grow: 1;
+    }
+    .admin-content-header .admin-header-actions {
+        display: none;
+    }
+}

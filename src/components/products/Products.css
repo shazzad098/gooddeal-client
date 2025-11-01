@@ -1,0 +1,807 @@
+/* ============================================================================
+    PRODUCTS DETAIL PAGE - Professional Refactor (Pine Green Theme)
+    ============================================================================ */
+
+/* _0_Root_and_Theme_ */
+:root {
+    /* Primary Colors (Pine Green) */
+    --primary-color: #059669; /* emerald-600 */
+    --primary-dark: #047857;  /* emerald-700 */
+    --primary-light: #ECFDF5; /* emerald-50 */
+    --primary-border: #A7F3D0; /* emerald-200 */
+    
+    /* Danger/Error Colors (Red) */
+    --danger-color: #DC2626;  /* red-600 */
+    --danger-dark: #B91C1C;   /* red-700 */
+    --danger-light: #FEF2F2;  /* red-50 */
+    --danger-border: #FECACA; /* red-200 */
+
+    /* Warning/Rating Colors (Amber) */
+    --warning-color: #f59e0b; /* amber-500 */
+
+    /* Text Colors (Modern Grays) */
+    --text-primary: #111827;   /* gray-900 */
+    --text-secondary: #4B5563; /* gray-600 */
+    --text-muted: #9CA3AF;     /* gray-400 */
+
+    /* Backgrounds */
+    --bg-page: #f9fafb;    /* gray-50 */
+    --bg-card: #ffffff;
+    --bg-surface: #f3f4f6; /* gray-100 */
+
+    /* Borders & Shadows (Subtle) */
+    --border-light: #e5e7eb; /* gray-200 */
+    --border-medium: #d1d5db; /* gray-300 */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    
+    /* Sizing & Transition */
+    --radius-md: 0.5rem;   /* 8px */
+    --radius-lg: 0.75rem;  /* 12px */
+    --radius-xl: 1rem;     /* 16px */
+    --transition: all 200ms ease-in-out;
+    
+    /* Accessibility */
+    --focus-ring-color: #D1FAE5; /* emerald-100 */
+    --focus-border-color: var(--primary-color);
+    --focus-ring-width: 3px;
+}
+
+
+/* ============================================================================
+   _1_Base_Layout_
+   ============================================================================ */
+.product-page {
+    background: var(--bg-page);
+    padding: 2.5rem 0 4rem;
+}
+
+.product-page .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    gap: 2rem;
+}
+
+/* Main 2-column grid: Gallery | Details */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* মোবাইল ডিফল্ট */
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* ডেস্কটপ লেআউট (গ্যালারি ও ডিটেইলস পাশাপাশি) */
+@media (min-width: 768px) {
+    .product-grid {
+        /* গ্যালারির জন্য 45%, ডিটেইলসের জন্য 55% */
+        grid-template-columns: 0.8fr 1fr;
+    }
+}
+@media (min-width: 1024px) {
+    .product-grid {
+        gap: 3rem;
+    }
+}
+
+/* ============================================================================
+   _2_Component_ProductBreadcrumb_
+   ============================================================================ */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+.breadcrumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+.breadcrumb-link:hover {
+    color: var(--text-primary);
+}
+.breadcrumb-icon {
+    color: var(--text-muted);
+}
+.breadcrumb-current {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+.breadcrumb-separator {
+    font-size: 1rem;
+}
+
+/* ============================================================================
+   _3_Component_ProductGallery_
+   ============================================================================ */
+.product-gallery {
+    position: sticky;
+    top: 2rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.main-image-container {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+}
+
+.main-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 300ms ease;
+}
+.product-image.loading { opacity: 0; }
+.product-image.loaded { opacity: 1; }
+
+/* Placeholder/Skeleton */
+.image-skeleton {
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg-surface);
+}
+.skeleton-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.04), transparent);
+    animation: shimmer 1.5s infinite linear;
+}
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Badges on Image */
+.out-of-stock-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.7);
+    display: grid;
+    place-items: center;
+}
+.out-of-stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-weight: 600;
+    color: var(--danger-dark);
+    background: var(--danger-light);
+    border: 1px solid var(--danger-border);
+}
+.discount-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--danger-color);
+    color: white;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+/* Thumbnail Gallery */
+.thumbnail-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 0.75rem;
+}
+
+.thumbnail {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: 2px solid var(--border-light);
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 0.25rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+.thumbnail:hover { 
+    border-color: var(--border-medium); 
+}
+.thumbnail.active { 
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+
+/* ============================================================================
+   _4_Component_ProductDetails_ (The main card)
+   ============================================================================ */
+.product-details {
+    /* কার্ড লেআউট */
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: clamp(1rem, 2.4vw, 2rem);
+    box-shadow: var(--shadow-sm);
+    
+    /* ফ্লেক্স কন্টেইনার হিসেবে সেকশনগুলো সাজানো */
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* সেকশনগুলোর মধ্যে গ্যাপ */
+}
+
+/* হেডার সেকশন */
+.product-header { display: grid; gap: 0.75rem; }
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-border);
+    padding: .4rem .6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    width: fit-content;
+}
+.product-title {
+    font-size: clamp(1.5rem, 1.6vw + .8rem, 2.25rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+}
+.product-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem 1rem;
+    color: var(--text-secondary);
+    font-size: .875rem;
+}
+.meta-item { display: inline-flex; align-items: center; gap: .4rem; }
+.stock-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    border-radius: 999px;
+    padding: .25rem .6rem;
+    font-weight: 500;
+}
+.stock-badge.in-stock { 
+    color: var(--primary-dark); 
+    background: var(--primary-light); 
+    border: 1px solid var(--primary-border); 
+}
+.stock-badge.out-of-stock { 
+    color: var(--danger-dark); 
+    background: var(--danger-light); 
+    border: 1px solid var(--danger-border); 
+}
+
+/* মূল্য সেকশন */
+.price-section { display: grid; gap: .5rem; }
+.price-container {
+    display: inline-flex;
+    align-items: baseline;
+    gap: .65rem;
+}
+.current-price {
+    font-size: clamp(1.5rem, 1.5vw + 1rem, 2.25rem);
+    font-weight: 800;
+    color: var(--text-primary);
+}
+.original-price {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    font-size: clamp(1rem, .5vw + .8rem, 1.125rem);
+}
+.savings-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-border);
+    border-radius: 999px;
+    padding: .35rem .6rem;
+    width: fit-content;
+    font-weight: 600;
+}
+
+/* রেটিং সেকশন */
+.rating-section {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    color: var(--text-secondary);
+}
+.stars { display: inline-flex; gap: .15rem; }
+.star { color: var(--warning-color); }
+
+/* পরিমাণ সেকশন */
+.quantity-section { display: grid; gap: 0.5rem; }
+.quantity-label {
+    display: inline-block;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.quantity-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+}
+.quantity-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-medium);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+.quantity-btn:disabled { opacity: .5; cursor: not-allowed; }
+.quantity-btn:hover:not(:disabled) { 
+    background: var(--bg-surface); 
+    border-color: var(--border-medium);
+    color: var(--text-primary);
+}
+.quantity-input {
+    width: 72px;
+    height: 44px;
+    text-align: center;
+    padding: .5rem .6rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-medium);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* অ্যাকশন সেকশন */
+.action-section { display: grid; gap: .75rem; }
+.add-to-cart-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 52px;
+    padding: .75rem 1rem;
+    border-radius: var(--radius-md);
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+.add-to-cart-btn:hover:not(:disabled) { 
+    transform: translateY(-1px); 
+    background: var(--primary-dark);
+    box-shadow: var(--shadow-md);
+}
+.add-to-cart-btn:disabled,
+.add-to-cart-btn.out-of-stock {
+    background: var(--bg-surface);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.btn-spinner {
+    width: 18px; height: 18px;
+    border-radius: 999px;
+    border: 2px solid rgba(255,255,255,.45);
+    border-top-color: white;
+    animation: spin .8s linear infinite;
+}
+/* 'Adding...' টেক্সটের জন্য স্পিনার */
+.add-to-cart-btn.loading .btn-spinner {
+    border-color: rgba(0,0,0,0.2);
+    border-top-color: var(--text-primary);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.secondary-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Buy Now | Save */
+    gap: .6rem;
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    min-height: 48px;
+    padding: .6rem .9rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-medium);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.btn:hover { 
+    background: var(--bg-surface); 
+    border-color: var(--border-medium);
+    color: var(--text-primary);
+}
+
+/* =================================================== */
+/* পরিবর্তন: বাটন ভেরিয়েন্ট (নতুন ডিজাইন) */
+/* =================================================== */
+.buy-now-btn {
+    /* সলিড ডার্ক বাটন (শক্তিশালী সেকেন্ডারি অ্যাকশন) */
+    background: var(--text-primary);
+    color: var(--bg-card);
+    border-color: var(--text-primary);
+}
+.buy-now-btn:hover {
+    background: var(--text-secondary);
+    border-color: var(--text-secondary);
+    color: var(--bg-card);
+}
+.wishlist-btn { 
+    /* সিম্পল আউটলাইন বাটন (টারশিয়ারি অ্যাকশন) */
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border-color: var(--border-light);
+}
+.wishlist-btn:hover {
+    background: var(--bg-surface);
+    border-color: var(--border-medium);
+    color: var(--text-primary);
+}
+/* =================================================== */
+/* পরিবর্তন শেষ */
+/* =================================================== */
+
+
+/* ফিচার সেকশন */
+.features-list {
+    margin-top: 1rem;
+    display: grid;
+    gap: .75rem;
+    border-top: 1px solid var(--border-light);
+    padding-top: 1.5rem;
+}
+.features-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+.feature-item {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: .75rem;
+    align-items: center;
+    padding: .25rem 0;
+    color: var(--text-secondary);
+}
+.feature-icon {
+    display: inline-grid;
+    place-items: center;
+    color: var(--primary-color);
+}
+.feature-content strong {
+    color: var(--text-primary);
+}
+
+/* ============================================================================
+   _5_Component_ProductTabs_
+   ============================================================================ */
+.product-tabs {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: clamp(1rem, 2vw, 1.5rem);
+    box-shadow: var(--shadow-sm);
+}
+
+.tab-headers {
+    display: flex;
+    gap: .4rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 1.5rem;
+}
+
+.tab-header {
+    appearance: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--text-secondary);
+    padding: .75rem 1rem;
+    border-radius: 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: -1px;
+}
+.tab-header:hover { 
+    color: var(--text-primary); 
+}
+.tab-header.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-content { margin-top: .5rem; }
+.tab-panel { outline: none; }
+.tab-panel h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.product-description { 
+    color: var(--text-secondary); 
+    line-height: 1.7; 
+}
+.product-features h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 1.5rem 0 0.75rem 0;
+}
+.product-features .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: .6rem;
+}
+.feature-card {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: .75rem;
+    color: var(--text-secondary);
+}
+.feature-check { color: var(--primary-color); }
+
+/* Specs Tab */
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+.spec-group {
+    padding: 0;
+    border: none;
+    background: none;
+}
+.spec-group h5 {
+    margin: 0 0 .75rem 0;
+    color: var(--text-primary);
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-light);
+}
+.spec-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem;
+    padding: .6rem 0;
+    border-bottom: 1px solid var(--border-light);
+}
+.spec-item:last-child { border-bottom: 0; }
+.spec-label { color: var(--text-secondary); }
+.spec-value { color: var(--text-primary); font-weight: 500; }
+.spec-value.in-stock { color: var(--primary-dark); }
+.spec-value.out-of-stock { color: var(--danger-dark); }
+
+/* Reviews Tab */
+.reviews-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+.overall-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+}
+.rating-score {
+    font-size: clamp(1.75rem, 1vw + 1rem, 2.5rem);
+    font-weight: 800;
+    color: var(--text-primary);
+}
+.rating-stars { display: inline-flex; gap: .15rem; color: var(--warning-color); }
+.rating-count { color: var(--text-secondary); }
+
+.reviews-placeholder {
+    margin-top: 1.5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+.reviews-cta { display: grid; gap: 0.75rem; justify-items: center; }
+.reviews-cta .btn-primary {
+    background: var(--primary-color);
+}
+.reviews-cta .btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+/* ============================================================================
+   _6_Component_AdminActions_
+   ============================================================================ */
+.admin-actions {
+    background: var(--danger-light);
+    border: 1px solid var(--danger-border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+}
+.admin-header {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    margin-bottom: 1rem;
+    color: var(--danger-dark);
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+.admin-buttons {
+    display: inline-flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+}
+.admin-buttons .btn-secondary {
+    background: var(--bg-card);
+    border-color: var(--border-medium);
+    color: var(--text-primary);
+}
+.admin-buttons .btn-danger {
+    background: var(--danger-color);
+    border-color: var(--danger-color);
+    color: #ffffff;
+}
+.admin-buttons .btn-danger:hover {
+    background: var(--danger-dark);
+    border-color: var(--danger-dark);
+    color: #ffffff;
+}
+
+/* ============================================================================
+   _7_States_Accessibility_
+   ============================================================================ */
+.loading-state, .empty-state {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+}
+.empty-state h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.pulse-loader {
+    display: inline-flex;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+.pulse-dot {
+    width: 12px; height: 12px; border-radius: 999px;
+    background: var(--primary-border);
+    animation: pulse 1.2s ease-in-out infinite;
+}
+.pulse-dot:nth-child(2) { animation-delay: .15s; }
+.pulse-dot:nth-child(3) { animation-delay: .3s; }
+@keyframes pulse {
+    0%, 100% { transform: scale(.8); opacity: .6; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Accessibility utilities */
+.sr-only {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+}
+
+/* Focus styles (নতুন থিম অনুযায়ী) */
+:where(a, button, [role="tab"], .thumbnail, .quantity-input, .quantity-btn, .btn, .add-to-cart-btn):focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 var(--focus-ring-width) var(--focus-ring-color),
+        0 0 0 calc(var(--focus-ring-width) + 1px) var(--focus-border-color);
+    border-color: var(--focus-border-color);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+    .skeleton-shimmer, .image-skeleton { display: none !important; }
+}
+
+/* =================================================== */
+/* পরিবর্তন: রেসপন্সিভ ফিক্স */
+/* =================================================== */
+@media (max-width: 767px) { /* 768px এর পরিবর্তে 767px */
+    .product-grid {
+        /* মোবাইলে গ্যালারি ও ডিটেইলস স্ট্যাক করা */
+        grid-template-columns: 1fr;
+    }
+    .product-gallery {
+        /* মোবাইলে স্টিকি পজিশন বন্ধ করা */
+        position: relative;
+        top: auto;
+    }
+    .secondary-actions { 
+        /* ট্যাবলেট/মোবাইলে বাটন স্ট্যাক করা */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .thumbnail-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+        gap: 0.5rem;
+    }
+    .admin-buttons { 
+        gap: .5rem; 
+        grid-template-columns: 1fr; /* ছোট স্ক্রিনে বাটনগুলো স্ট্যাক করা */
+    }
+    .tab-header {
+        padding: 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    /* .secondary-actions এর রুলটি max-width: 767px এ সরানো হয়েছে, 
+       তাই এখান থেকে ডুপ্লিকেট রুলটি রিমুভ করা হলো। */
+}
