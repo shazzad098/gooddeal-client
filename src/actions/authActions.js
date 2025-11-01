@@ -1,14 +1,16 @@
 // client/src/actions/authActions.js
 import axios from 'axios';
 
+// 🚀 FIXED: API_URL যোগ করা হয়েছে
+const API_URL = process.env.REACT_APP_API_URL; 
+
 // Remove Alert (এটি অপরিবর্তিত)
 export const removeAlert = (id) => ({
     type: 'REMOVE_ALERT',
     payload: id
 });
 
-// === পরিবর্তন এখানে ===
-// Set Alert (এখন এটি একটি থাঙ্ক এবং নিজে থেকেই রিমুভ হয়)
+// Set Alert (এটি অপরিবর্তিত)
 export const setAlert = (msg, type, timeout = 1500) => (dispatch) => {
     const id = Date.now();
     dispatch({
@@ -32,17 +34,16 @@ export const registerUser = (userData) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         };
-
-        const res = await axios.post('/api/auth/register', userData, config);
+        
+        // 🚀 পরিবর্তন: API_URL যোগ করা হলো
+        const res = await axios.post(`${API_URL}/api/auth/register`, userData, config);
 
         dispatch({
             type: 'REGISTER_SUCCESS',
             payload: res.data
         });
 
-        // === পরিবর্তন: সংক্ষিপ্ত মেসেজ ও নতুন setAlert ব্যবহার ===
         dispatch(setAlert('Registered!', 'success'));
-        // পুরানো setTimeout ব্লকটি রিমুভ করা হয়েছে
 
     } catch (error) {
         const message = error.response?.data?.message || 'Registration failed';
@@ -52,9 +53,7 @@ export const registerUser = (userData) => async (dispatch) => {
             payload: message
         });
 
-        // === পরিবর্তন: নতুন setAlert ব্যবহার ===
         dispatch(setAlert(message, 'error'));
-        // পুরানো setTimeout ব্লকটি রিমুভ করা হয়েছে
     }
 };
 
@@ -69,31 +68,25 @@ export const loginUser = (email, password) => async (dispatch) => {
             }
         };
 
-        const res = await axios.post('/api/auth/login', { email, password }, config);
+        // 🚀 পরিবর্তন: API_URL যোগ করা হলো
+        const res = await axios.post(`${API_URL}/api/auth/login`, { email, password }, config);
 
         dispatch({
             type: 'LOGIN_SUCCESS',
             payload: res.data
         });
 
-        // === পরিবর্তন: সংক্ষিপ্ত মেসেজ "Logged in!" ও নতুন setAlert ===
         dispatch(setAlert('Logged in!', 'success'));
-        // পুরানো setTimeout ব্লকটি রিমুভ করা হয়েছে
 
     } catch (error) {
         console.error('Login error:', error);
 
-        // Better error handling
         let message = 'Login failed';
-
         if (error.response) {
-            // Server responded with error status
             message = error.response.data?.message || `Server error: ${error.response.status}`;
         } else if (error.request) {
-            // Request made but no response received
             message = 'No response from server. Please check if backend is running.';
         } else {
-            // Something else happened
             message = error.message;
         }
 
@@ -102,21 +95,17 @@ export const loginUser = (email, password) => async (dispatch) => {
             payload: message
         });
 
-        // === পরিবর্তন: নতুন setAlert ব্যবহার ===
         dispatch(setAlert(message, 'error'));
-        // পুরানো setTimeout ব্লকটি রিমুভ করা হয়েছে
     }
 };
 
 // Logout User
 export const logoutUser = () => (dispatch) => {
     dispatch({ type: 'LOGOUT' });
-    // === পরিবর্তন: সংক্ষিপ্ত মেসেজ "Logged out!" ও নতুন setAlert ===
     dispatch(setAlert('Logged out!', 'success'));
 };
 
 // Load User
-// client/src/actions/authActions.js - Add this if not exists
 export const loadUser = () => async (dispatch) => {
     try {
         const token = localStorage.getItem('token');
@@ -132,7 +121,8 @@ export const loadUser = () => async (dispatch) => {
             }
         };
 
-        const res = await axios.get('/api/auth/user', config);
+        // 🚀 পরিবর্তন: API_URL যোগ করা হলো
+        const res = await axios.get(`${API_URL}/api/auth/user`, config);
 
         dispatch({
             type: 'USER_LOADED',
