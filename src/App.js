@@ -1,4 +1,3 @@
-// client/src/App.js
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Provider, useSelector, useDispatch } from 'react-redux';
@@ -29,7 +28,21 @@ import ReturnsPolicy from './components/pages/ReturnsPolicy';
 import TermsOfService from './components/pages/TermsOfService';
 import SupportPage from './components/pages/SupportPage';
 import ScrollToTop from './components/routing/ScrollToTop';
-import WebDevService from './components/pages/WebDevService'; // === NOTUN IMPORT ===
+import WebDevService from './components/pages/WebDevService';
+
+// --- NEW IMPORTS from Footer Links ---
+import FabricManufacturing from './components/pages/FabricManufacturing'; 
+import CustomPrinting from './components/pages/CustomPrinting';
+import TextileDesign from './components/pages/TextileDesign'; 
+import QualityControl from './components/pages/QualityControl';
+import BulkOrders from './components/pages/BulkOrders';
+import QualityGuarantee from './components/pages/QualityGuarantee';
+import TechnicalSupport from './components/pages/TechnicalSupport';
+import SampleRequests from './components/pages/SampleRequests';
+import QualityStandards from './components/pages/QualityStandards';
+import Sustainability from './components/pages/Sustainability'; // <--- NEW IMPORT
+// -------------------------------------
+
 
 // AppLayout Component
 const AppLayout = () => {
@@ -58,8 +71,20 @@ const AppLayout = () => {
                     <Route path="/support" element={<SupportPage />} />
                     <Route path="/Privacy" element={<PrivacyPolicy />} />
 
-                    {/* === NOTUN ROUTE === */}
                     <Route path="/services/web-development" element={<WebDevService />} />
+
+                    {/* --- NEW ROUTES from Footer Links --- */}
+                    <Route path="/fabric-manufacturing" element={<FabricManufacturing />} />
+                    <Route path="/custom-printing" element={<CustomPrinting />} />
+                    <Route path="/textile-design" element={<TextileDesign />} />
+                    <Route path="/quality-control" element={<QualityControl />} />
+                    <Route path="/bulk-orders" element={<BulkOrders />} />
+                    <Route path="/quality-guarantee" element={<QualityGuarantee />} />
+                    <Route path="/technical-support" element={<TechnicalSupport />} />
+                    <Route path="/sample-requests" element={<SampleRequests />} />
+                    <Route path="/quality" element={<QualityStandards />} />
+                    <Route path="/sustainability" element={<Sustainability />} /> {/* <--- NEW ROUTE */}
+                    {/* ------------------------------------ */}
 
                     {/* Admin Routes */}
                     <Route

@@ -1,0 +1,158 @@
+/* General Styling */
+.fabric-manufacturing-page {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Hero Section */
+.fm-hero-section {
+  /* background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('factory-bg.jpg') no-repeat center center/cover; */
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.fm-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fm-hero-section h1 {
+  font-size: 3.5em;
+  margin-bottom: 15px;
+  color: #1b1919;
+}
+
+.fm-hero-section p {
+  font-size: 1.25em;
+  margin-bottom: 30px;
+}
+
+.fm-cta-button {
+  display: inline-block;
+  background-color: #007bff; /* Primary Blue */
+  color: white;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.fm-cta-button:hover {
+  background-color: #0056b3;
+}
+
+/* Process Section */
+.fm-process-section {
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.fm-process-section h2 {
+  font-size: 2.5em;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.fm-process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.fm-step {
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fm-step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.fm-step h3 {
+  color: #007bff;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+/* Gallery Section */
+.fm-gallery-section {
+  background-color: #f8f8f8;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.fm-gallery-section h2 {
+  font-size: 2.2em;
+  color: #1a1a1a;
+  margin-bottom: 30px;
+}
+
+.fm-gallery-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fm-gallery-item {
+  width: 100%;
+  max-width: 350px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.fm-note {
+  margin-top: 20px;
+  color: #777;
+  font-style: italic;
+}
+
+/* Benefits Section */
+.fm-benefits-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px 40px;
+}
+
+.fm-benefits-section h2 {
+    font-size: 2.2em;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.fm-benefits-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.fm-benefits-section ul li {
+    background: #e9f5ff; /* Light blue background for list items */
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 5px solid #007bff;
+    border-radius: 4px;
+    font-size: 1.1em;
+}
+
+.fm-benefits-section ul li strong {
+    color: #0056b3;
+}

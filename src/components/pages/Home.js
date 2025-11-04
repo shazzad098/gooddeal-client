@@ -4,7 +4,6 @@ import axios from 'axios';
 import './Home.css';
 
 const Home = () => {
-    // ... (baki state-gulo oporibortito) ...
     const [featuredProducts, setFeaturedProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({
@@ -16,7 +15,6 @@ const Home = () => {
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
     useEffect(() => {
-        // ... (baki useEffect oporibortito) ...
         fetchFeaturedProducts();
         fetchStats();
 
@@ -31,7 +29,6 @@ const Home = () => {
     }, [currentSlide, isAutoPlaying]);
 
     const fetchFeaturedProducts = async () => {
-        // ... (function oporibortito) ...
         try {
             const res = await axios.get('/api/products?limit=4');
             setFeaturedProducts(res.data.products || []);
@@ -43,7 +40,6 @@ const Home = () => {
     };
 
     const fetchStats = async () => {
-        // ... (function oporibortito) ...
         setStats({
             products: 1250,
             customers: 8500,
@@ -51,73 +47,102 @@ const Home = () => {
         });
     };
 
-    // ... (heroSlides ebong carousel functions oporibortito) ...
     const heroSlides = [
         {
             image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200",
             badge: "Premium Quality",
-            title: "Premium Deals on",
-            subtitle: "Discover exceptional products with unbeatable prices. Quality guaranteed, satisfaction assured."
+            title: "Premium Textile Solutions",
+            subtitle: "Discover exceptional fabric quality with unbeatable prices. Quality guaranteed, satisfaction assured."
         },
         {
             image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1200",
             badge: "Fast Delivery",
-            title: "Lightning-Fast Shipping",
-            subtitle: "Get your orders delivered within 24–48 hours across major cities. Track every step in real time."
+            title: "Global Textile Supply",
+            subtitle: "Get your fabric orders delivered worldwide. Track every step in real time with our logistics network."
         },
         {
             image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200",
             badge: "Customer First",
-            title: "Your Satisfaction, Our Priority",
-            subtitle: "Dedicated 24/7 support, easy returns, and a seamless shopping experience tailored just for you."
+            title: "Your Textile Partner",
+            subtitle: "Dedicated 24/7 support, quality assurance, and seamless business experience tailored for you."
         }
     ];
+
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1));
     };
+
     const prevSlide = () => {
         setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
     };
+
     const goToSlide = (index) => {
         setCurrentSlide(index);
     };
+
     const toggleAutoPlay = () => {
         setIsAutoPlaying(!isAutoPlaying);
     };
 
-
-    // === PORIBORTON EKHANE ===
     const categories = [
         {
-            name: 'Electronics',
-            description: 'Latest gadgets and devices',
-            image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400',
-            link: '/products?category=electronics',
-            icon: '📱'
-        },
-        {
-            name: 'Clothing',
-            description: 'Fashion for everyone',
-            image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=400',
-            link: '/products?category=clothing',
+            name: 'Cotton Fabrics',
+            description: 'Premium quality cotton materials',
+            image: 'https://images.unsplash.com/photo-1523380744952-b7e00e6e2ffa?w=400',
+            link: '/products?category=cotton',
             icon: '👕'
         },
         {
-            name: 'Web Development',
-            description: 'create stunning websites',
-            image: 'https://imgs.search.brave.com/HjllFPYi3dREsUKMm9U5Lb8P3tUJZaSWxZqVMkrP1lk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3Ivd2ViLWRldmVs/b3BtZW50LWlzb21l/dHJpYy13ZWItY29u/Y2VwdC1wZW9wbGUt/Y3JlYXRlLW9wdGlt/aXplLXdlYi1wYWdl/LXdvcmstd2l0aC1j/b2RlXzkyMDktNzEw/MC5qcGc_c2VtdD1h/aXNfaHlicmlkJnc9/NzQwJnE9ODA',
-            link: '/services/web-development', // <-- LINK PORIBORTON KORA HOYECHE
-            icon: '🌐'
+            name: 'Silk Collection',
+            description: 'Luxurious silk fabrics',
+            image: 'https://images.unsplash.com/photo-1523381140794-a9e493f419a3?w=400',
+            link: '/products?category=silk',
+            icon: '🎀'
+        },
+        {
+            name: 'Wool & Knits',
+            description: 'Warm and durable wool materials',
+            image: 'https://images.unsplash.com/photo-1598703247910-481ebd69d8e4?w=400',
+            link: '/products?category=wool',
+            icon: '🧶'
+        },
+        {
+            name: 'Synthetic Fabrics',
+            description: 'Modern synthetic materials',
+            image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400',
+            link: '/products?category=synthetic',
+            icon: '🔬'
         }
     ];
-    // ===========================
+
+    const services = [
+        {
+            icon: '🏭',
+            title: 'Fabric Manufacturing',
+            description: 'State-of-the-art textile manufacturing with quality control'
+        },
+        {
+            icon: '🎨',
+            title: 'Custom Printing',
+            description: 'Custom design and printing services for unique patterns'
+        },
+        {
+            icon: '🌍',
+            title: 'Global Export',
+            description: 'Worldwide shipping and export services'
+        },
+        {
+            icon: '🔧',
+            title: 'Technical Support',
+            description: 'Expert technical support for all your textile needs'
+        }
+    ];
 
     return (
         <div className="homepage">
-            {/* === CUSTOM CAROUSEL SECTION === */}
+            {/* === HERO CAROUSEL SECTION === */}
             <section className="hero-section">
-                {/* ... (carousel content oporibortito) ... */}
-                <div className="custom-carousel">
+                <div className="extice-carousel">
                     <div className="carousel-container">
                         {heroSlides.map((slide, index) => (
                             <div
@@ -135,18 +160,17 @@ const Home = () => {
                                         </div>
                                         <h1 className="carousel-title">
                                             {slide.title}
-                                            <span className="brand">Good Deal</span>
                                         </h1>
                                         <p className="carousel-subtitle">
                                             {slide.subtitle}
                                         </p>
                                         <div className="carousel-actions">
                                             <Link to="/products" className="btn btn-primary">
-                                                Shop Collection
+                                                Explore Collection
                                                 <span className="btn-icon">→</span>
                                             </Link>
-                                            <Link to="/deals" className="btn btn-secondary">
-                                                View Special Offers
+                                            <Link to="/about" className="btn btn-secondary">
+                                                Learn More
                                             </Link>
                                         </div>
                                     </div>
@@ -157,14 +181,10 @@ const Home = () => {
 
                     {/* Carousel Controls */}
                     <button className="carousel-control prev" onClick={prevSlide}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        ‹
                     </button>
                     <button className="carousel-control next" onClick={nextSlide}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
+                        ›
                     </button>
 
                     {/* Carousel Indicators */}
@@ -177,20 +197,39 @@ const Home = () => {
                             ></button>
                         ))}
                     </div>
-
-                    {/* Auto Play Toggle */}
-                    <button className="carousel-autoplay" onClick={toggleAutoPlay}>
-                        {isAutoPlaying ? '⏸️' : '▶️'}
-                    </button>
                 </div>
             </section>
 
+            {/* === STATS SECTION === */}
+            <section className="stats-section">
+                <div className="container">
+                    <div className="stats-grid">
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.products}+</div>
+                            <div className="stat-label">Products</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.customers}+</div>
+                            <div className="stat-label">Happy Clients</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">{stats.orders}+</div>
+                            <div className="stat-label">Orders Completed</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">15+</div>
+                            <div className="stat-label">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* === CATEGORIES SECTION === */}
             <section className="categories-section">
-                {/* ... (category section oporibortito) ... */}
                 <div className="container">
                     <div className="section-header">
-                        <h2>Product & Services</h2>
-
+                        <h2>Our Fabric Categories</h2>
+                        <p>Premium quality textiles for every need</p>
                     </div>
                     <div className="categories-grid">
                         {categories.map((category, index) => (
@@ -211,12 +250,31 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* === SERVICES SECTION === */}
+            <section className="services-section">
+                <div className="container">
+                    <div className="section-header">
+                        <h2>Our Services</h2>
+                        <p>Comprehensive textile solutions for your business</p>
+                    </div>
+                    <div className="services-grid">
+                        {services.map((service, index) => (
+                            <div key={index} className="service-card">
+                                <div className="service-icon">{service.icon}</div>
+                                <h3>{service.title}</h3>
+                                <p>{service.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* === FEATURED PRODUCTS SECTION === */}
             <section className="products-section">
-                {/* ... (featured products section oporibortito) ... */}
                 <div className="container">
                     <div className="section-header">
                         <h2>Featured Products</h2>
-                        <p>Check out our most popular items</p>
+                        <p>Check out our premium textile collections</p>
                     </div>
                     {loading ? (
                         <div className="loading-products">
@@ -258,10 +316,28 @@ const Home = () => {
                             ))}
                         </div>
                     )}
-                    <div className="section-footer dark">
+                    <div className="section-footer">
                         <Link to="/products" className="btn-outline">
                             View All Products
                         </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* === CTA SECTION === */}
+            <section className="cta-section">
+                <div className="container">
+                    <div className="cta-content">
+                        <h2>Ready to Start Your Textile Project?</h2>
+                        <p>Contact us today for premium fabric solutions and expert guidance</p>
+                        <div className="cta-actions">
+                            <Link to="/contact" className="btn btn-primary">
+                                Get In Touch
+                            </Link>
+                            <Link to="/catalog" className="btn btn-secondary">
+                                Download Catalog
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>

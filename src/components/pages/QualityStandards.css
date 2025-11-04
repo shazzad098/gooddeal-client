@@ -1,0 +1,223 @@
+/* General Styling */
+.quality-standards-page {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.qs-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.qs-hero-section {
+  background: linear-gradient(135deg, #34495e, #2c3e50); /* Dark Grey/Blue - Professional, Solid */
+  color: white;
+  padding: 130px 20px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.qs-hero-section h1 {
+  font-size: 3.8em;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.qs-hero-section p {
+  font-size: 1.3em;
+  margin-bottom: 35px;
+  opacity: 0.95;
+}
+
+.qs-cta-button {
+  display: inline-block;
+  background-color: #f39c12; /* Orange Accent - Visibility */
+  color: #2c3e50;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.3s;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.qs-cta-button:hover {
+  background-color: #e67e22;
+  transform: translateY(-2px);
+}
+
+/* Certifications Section */
+.qs-certifications-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.qs-certifications-section h2 {
+    font-size: 2.5em;
+    color: #34495e;
+    margin-bottom: 50px;
+}
+
+.qs-cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.qs-cert-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ddd;
+    text-align: left;
+    transition: border-color 0.3s ease;
+}
+
+.qs-cert-card:hover {
+    border-color: #f39c12;
+}
+
+.qs-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #3498db; /* Blue for reliability */
+}
+
+.qs-cert-card h3 {
+    color: #2c3e50;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Protocols Section */
+.qs-protocols-section {
+    background-color: #ecf0f1; /* Light Grey background */
+    padding: 60px 0;
+}
+
+.qs-protocols-section h2 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.qs-intro-text {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.qs-protocols-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.qs-protocols-list ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.qs-protocols-list li {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 1.05em;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    border-left: 5px solid #3498db;
+}
+
+.qs-check-icon {
+    color: #3498db;
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+/* Download Section */
+.qs-download-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.qs-download-section h2 {
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.qs-download-section p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.qs-download-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.qs-download-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.qs-download-btn {
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #3498db;
+}
+
+.qs-download-btn:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.qs-secondary-btn {
+    background-color: white;
+    color: #3498db;
+    border: 2px solid #3498db;
+}
+
+.qs-secondary-btn:hover {
+    background-color: #ecf0f1;
+    color: #2980b9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .qs-hero-section h1 {
+        font-size: 2.8em;
+    }
+    .qs-protocols-list ul {
+        grid-template-columns: 1fr;
+    }
+    .qs-download-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .qs-download-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}

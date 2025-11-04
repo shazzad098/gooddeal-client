@@ -1,0 +1,197 @@
+/* General Styling */
+.technical-support-page {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.ts-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.ts-hero-section {
+  background: linear-gradient(135deg, #00796b, #004d40); /* Teal/Dark Green for Solution/Support */
+  color: white;
+  padding: 120px 20px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.ts-hero-section h1 {
+  font-size: 3.5em;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.ts-hero-section p {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.ts-cta-button {
+  display: inline-block;
+  background-color: #ffb300; /* Gold Accent */
+  color: #004d40;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.3s;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ts-cta-button:hover {
+  background-color: #e6a200;
+  transform: translateY(-2px);
+}
+
+/* Channels Section */
+.ts-channels-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.ts-channels-section h2 {
+    font-size: 2.5em;
+    color: #004d40;
+    margin-bottom: 40px;
+}
+
+.ts-channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.ts-channel-card {
+    background: #f0fff0; /* Very light green/teal background */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #c8e6c9;
+    transition: transform 0.3s ease;
+}
+
+.ts-channel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.ts-icon {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+}
+
+.ts-channel-card h3 {
+    color: #00796b;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.ts-card-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #ffb300;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.ts-card-link:hover {
+    color: #e6a200;
+}
+
+/* Topics Section */
+.ts-topics-section {
+    background-color: #f7f7f7;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.ts-topics-section h2 {
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.ts-topics-list {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ts-topic-tag {
+    background-color: #fff;
+    color: #00796b;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #00796b;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.ts-topic-tag:hover {
+    background-color: #e0f2f1;
+    cursor: pointer;
+}
+
+/* Escalation Section */
+.ts-escalation-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.ts-escalation-section h2 {
+    font-size: 2.5em;
+    color: #d32f2f; /* Red for urgency */
+    margin-bottom: 30px;
+}
+
+.ts-escalation-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #ffeded; /* Light Red/Pink background */
+    border-radius: 12px;
+    border: 2px solid #d32f2f;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ts-escalation-box p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    color: #444;
+}
+
+.ts-escalate-button {
+    display: inline-block;
+    background-color: #d32f2f;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.ts-escalate-button:hover {
+    background-color: #b71c1c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .ts-hero-section h1 {
+        font-size: 2.8em;
+    }
+    .ts-channel-grid {
+        grid-template-columns: 1fr;
+    }
+}

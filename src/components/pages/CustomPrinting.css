@@ -1,0 +1,220 @@
+/* General Styling */
+.custom-printing-page {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.cp-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.cp-hero-section {
+  background: linear-gradient(135deg, #f06d7c, #ff9a8d); /* Warm, vibrant gradient */
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.cp-hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cp-hero-section h1 {
+  font-size: 3.2em;
+  margin-bottom: 10px;
+}
+
+.cp-hero-section p {
+  font-size: 1.3em;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.cp-cta-button {
+  display: inline-block;
+  background-color: #333;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cp-cta-button:hover {
+  background-color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Design Form Section */
+.cp-design-form-section {
+    padding: 60px 0;
+    background-color: #f7f7f7;
+}
+
+.cp-design-form-section h2 {
+    text-align: center;
+    font-size: 2.2em;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+}
+
+.cp-design-form {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.cp-design-form input[type="text"],
+.cp-design-form input[type="email"],
+.cp-design-form select,
+.cp-design-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.cp-design-form input:focus,
+.cp-design-form select:focus,
+.cp-design-form textarea:focus {
+    border-color: #f06d7c;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(240, 109, 124, 0.2);
+}
+
+.cp-file-upload {
+    margin-bottom: 20px;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.cp-file-upload label {
+    display: block;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.cp-submit-button {
+    width: 100%;
+    background-color: #f06d7c;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s;
+}
+
+.cp-submit-button:hover {
+    background-color: #d85c6d;
+    transform: translateY(-1px);
+}
+
+/* Methods Section */
+.cp-methods-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.cp-methods-section h2 {
+    font-size: 2.2em;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+}
+
+.cp-methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.cp-method-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border-top: 5px solid #ff9a8d;
+}
+
+.cp-method-card:hover {
+    transform: translateY(-5px);
+}
+
+.cp-method-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.cp-method-card h3 {
+    color: #f06d7c;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.cp-method-benefits {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: left;
+}
+
+.cp-method-benefits li {
+    background: #fff8f8;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* QA Section */
+.cp-qa-section {
+    background-color: #333;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.cp-qa-section h2 {
+    color: #ff9a8d;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.cp-qa-section p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cp-hero-section h1 {
+        font-size: 2.5em;
+    }
+    .cp-hero-section p {
+        font-size: 1.1em;
+    }
+}

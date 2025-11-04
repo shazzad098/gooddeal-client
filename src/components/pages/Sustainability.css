@@ -1,0 +1,201 @@
+/* General Styling */
+.sustainability-page {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.sus-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.sus-hero-section {
+  background: linear-gradient(135deg, #1e8449, #27ae60); /* Deep Green / Eco-Friendly */
+  color: white;
+  padding: 140px 20px 100px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.sus-hero-section h1 {
+  font-size: 4em;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.sus-hero-section p {
+  font-size: 1.4em;
+  margin-bottom: 35px;
+  opacity: 0.95;
+}
+
+.sus-cta-button {
+  display: inline-block;
+  background-color: #f1c40f; /* Yellow Accent */
+  color: #1e8449;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.3s;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sus-cta-button:hover {
+  background-color: #e6b800;
+  transform: translateY(-2px);
+}
+
+/* Pillars Section */
+.sus-pillars-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.sus-pillars-section h2 {
+    font-size: 2.5em;
+    color: #1e8449;
+    margin-bottom: 50px;
+}
+
+.sus-pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.sus-pillar-card {
+    background: #f7fff7; /* Very light green/white */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #d4e6d4;
+    transition: transform 0.3s ease;
+}
+
+.sus-pillar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.sus-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #27ae60;
+}
+
+.sus-pillar-card h3 {
+    color: #1e8449;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Goals Section */
+.sus-goals-section {
+    background-color: #ecf0f1; /* Light Grey background */
+    padding: 60px 0;
+    text-align: center;
+}
+
+.sus-goals-section h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.sus-goals-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sus-goal-item {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #27ae60;
+}
+
+.sus-goal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sus-goal-icon {
+    font-size: 2em;
+    margin-right: 15px;
+    color: #1e8449;
+}
+
+.sus-goal-target {
+    font-size: 1.5em;
+    color: #333;
+    margin: 0;
+    font-weight: 700;
+}
+
+.sus-goal-metric {
+    font-size: 1.05em;
+    color: #555;
+    margin-left: 50px; /* Aligned with the text next to the icon */
+}
+
+/* Report Section */
+.sus-report-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.sus-report-section h2 {
+    font-size: 2.2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.sus-report-section p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.sus-report-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    background-color: #1e8449;
+    color: white;
+    border: 2px solid #1e8449;
+    transition: all 0.3s ease;
+}
+
+.sus-report-btn:hover {
+    background-color: #186a3b;
+    transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sus-hero-section h1 {
+        font-size: 3em;
+    }
+    .sus-pillar-grid {
+        grid-template-columns: 1fr;
+    }
+    .sus-goal-metric {
+        margin-left: 0;
+        padding-left: 15px;
+    }
+}

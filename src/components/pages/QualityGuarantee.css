@@ -1,0 +1,204 @@
+/* General Styling */
+.quality-guarantee-page {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.qg-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.qg-hero-section {
+  background: linear-gradient(135deg, #1c88ff, #004d99); /* Strong, Trustworthy Blue */
+  color: white;
+  padding: 130px 20px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.qg-hero-section h1 {
+  font-size: 3.8em;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.qg-hero-section p {
+  font-size: 1.3em;
+  margin-bottom: 35px;
+  opacity: 0.95;
+}
+
+.qg-cta-button {
+  display: inline-block;
+  background-color: #28a745; /* Assurance Green */
+  color: white;
+  padding: 15px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.3s;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.qg-cta-button:hover {
+  background-color: #1e7e34;
+  transform: translateY(-2px);
+}
+
+/* Pillars Section */
+.qg-pillars-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.qg-pillars-section h2 {
+    font-size: 2.5em;
+    color: #004d99;
+    margin-bottom: 50px;
+}
+
+.qg-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.qg-pillar-card {
+    background: #f8f8f8;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-bottom: 4px solid #1c88ff;
+    text-align: left;
+    transition: box-shadow 0.3s ease;
+}
+
+.qg-pillar-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.qg-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: #1c88ff;
+}
+
+.qg-pillar-card h3 {
+    color: #333;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+/* Assurance Section */
+.qg-assurance-section {
+    background-color: #e6f0ff; /* Light blue background */
+    padding: 60px 0;
+    text-align: center;
+}
+
+.qg-assurance-section h2 {
+    font-size: 2.5em;
+    color: #004d99;
+    margin-bottom: 30px;
+}
+
+.qg-commitment-box {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #cce0ff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.qg-commitment-box p {
+    font-size: 1.15em;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+.qg-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.qg-primary-button,
+.qg-secondary-button {
+    padding: 12px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.qg-primary-button {
+    background-color: #1c88ff;
+    color: white;
+    border: 2px solid #1c88ff;
+}
+
+.qg-primary-button:hover {
+    background-color: #004d99;
+    border-color: #004d99;
+}
+
+.qg-secondary-button {
+    background-color: white;
+    color: #1c88ff;
+    border: 2px solid #1c88ff;
+}
+
+.qg-secondary-button:hover {
+    background-color: #f0f0f0;
+    color: #004d99;
+}
+
+/* FAQ Section */
+.qg-faq-section {
+    padding: 60px 0;
+}
+
+.qg-faq-section h2 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.qg-faq-item {
+    background: white;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.qg-faq-item h4 {
+    color: #1c88ff;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .qg-hero-section h1 {
+        font-size: 2.8em;
+    }
+    .qg-buttons {
+        flex-direction: column;
+    }
+    .qg-primary-button,
+    .qg-secondary-button {
+        width: 100%;
+        text-align: center;
+    }
+}

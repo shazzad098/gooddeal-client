@@ -34,8 +34,11 @@ const Navbar = () => {
             <div className="nav-container">
                 <div className="nav-brand">
                     <Link to="/" onClick={closeMenu}>
-                        <span className="brand-icon">🛍️</span>
-                        <span className="brand-text">GoodDeal</span>
+                        <img 
+                            src="good-deal.jpg" 
+                            alt="GoodDeal Logo" 
+                            className="brand-logo"
+                        />
                     </Link>
                 </div>
 
@@ -49,7 +52,6 @@ const Navbar = () => {
                     <span></span>
                 </button>
 
-                {/* === PORIBORTON: Link-guloke main-links ebong auth-links-e vag kora === */}
                 <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
                     <div className="nav-main-links">
                         <Link to="/" className="nav-link" onClick={closeMenu}>
@@ -68,9 +70,12 @@ const Navbar = () => {
                             </Link>
                         )}
                         
-                        {/* Shobar jonno Cart Link */}
                         <Link to="/cart" className="nav-link nav-cart-link" onClick={closeMenu}>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
                             <span>Cart</span>
                             {itemCount > 0 && (
                                 <span className="cart-badge">{itemCount}</span>
@@ -101,8 +106,6 @@ const Navbar = () => {
                         )}
                     </div>
                 </div>
-                {/* =================================================================== */}
-
             </div>
 
             <Alert />
